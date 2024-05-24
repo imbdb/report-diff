@@ -11,7 +11,6 @@ async function diff(image1Path, image2Path, diffImagePath){
     }
     const image = await loadImage(image2Path);
     const canvas = createCanvas(image.width, image.height);
-    console.log(image.width, image.height);
     const ctx = canvas.getContext('2d');
     ctx.drawImage(image, 0, 0);
     console.log("Differences:", diffClusters.length);
@@ -30,7 +29,7 @@ async function diff(image1Path, image2Path, diffImagePath){
     // save the image with rectangles
     const fs = require('fs/promises');
     await fs.writeFile(diffImagePath, canvas2.toBuffer('image/png'));
-    console.log('The PNG file was created.');
+    console.log('The diff image created.');
 }
 
 module.exports = {diff};
